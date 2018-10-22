@@ -1,26 +1,29 @@
-import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import React, { Component } from 'react'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
-// import Book from './components/book'
 import Bookshelf from "./components/bookshelf";
+import CurrentlyReading from './components/currentlyReading';
 
-class BooksApp extends React.Component {
+class App extends Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false
+    books: []
+  }
+
+   /**
+   * Component lifecycle: After render API request for data
+   */
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then(books => this.setState({ books }))
+    
   }
 
   render() {
     return (
- <Bookshelf />
+ <Bookshelf books={this.state.books} />
 
     )
   }
 }
 
-export default BooksApp
+export default App
