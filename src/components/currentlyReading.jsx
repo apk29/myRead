@@ -35,6 +35,6 @@ const CurrentlyReading = ({ shelf, moveBook }) => {
             </div>
           </div>
          );
-    }
+    };
  
 export default CurrentlyReading;

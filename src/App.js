@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Bookshelf from "./components/bookshelf";
-import CurrentlyReading from './components/currentlyReading';
+import Bookshelf from './components/bookshelf';
+
 
 class App extends Component {
   state = {
@@ -19,11 +19,14 @@ class App extends Component {
   }
 
   render() {
-    return (
- <Bookshelf books={this.state.books} />
-
+    return (<React.Fragment>
+ <Bookshelf books={this.state.books} moveShelf={this.moveShelf} />
+ 
+ </React.Fragment>
     )
   }
 }
+
+
 
 export default App
