@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import Book from "./book";
 
 const OnShelf = ({ shelf, moveBook }) => {
     return (
             <div className="bookshelf">
-            <h2 className="bookshelf-title container-fluid">Currently Reading</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {shelf.map(
