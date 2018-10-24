@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Book from "./book";
 
-const CurrentlyReading = ({ shelf, moveBook }) => {
+const OnShelf = ({ shelf, moveBook }) => {
     return (
             <div className="bookshelf">
             <h2 className="bookshelf-title container-fluid">Currently Reading</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                {shelf.filter(library => library.shelf === "currentlyReading").map(
+                {shelf.map(
                   (book, i) =>
                     book.imageLinks ? (
                       <li key={i}>
@@ -37,4 +38,4 @@ const CurrentlyReading = ({ shelf, moveBook }) => {
          );
     };
  
-export default CurrentlyReading;
+export default OnShelf;

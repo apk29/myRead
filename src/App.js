@@ -19,6 +19,9 @@ class App extends Component {
   }
 
   render() {
+    const books = this.state.books;
+    console.log(books);
+
     return (<React.Fragment>
  <Bookshelf books={this.state.books} moveShelf={this.moveShelf} />
  

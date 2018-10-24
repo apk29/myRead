@@ -1,7 +1,5 @@
 import React from 'react';
-import CurrentlyReading from './currentlyReading';
-import WantToRead from './wantToRead';
-import Read from './read';
+import OnShelf from './onShelf';
 
 const Bookshelf = ({ moveShelf, books}) => {
   return (
@@ -9,9 +7,8 @@ const Bookshelf = ({ moveShelf, books}) => {
       <div className="list-books">
         <h1 className="list-books-title">MyReads</h1>
         <div className="list-books-container">
-        <CurrentlyReading shelf={books} moveBook={moveShelf} />
-        <Read shelf={books} moveBook={moveShelf} />
-        <WantToRead shelf={books} moveBook={moveShelf} />
+        <OnShelf shelf={books} moveBook={moveShelf} />
+       
         </div>
         <div className="open-search">
           
