@@ -2,34 +2,47 @@ import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './components/bookshelf';
-
+import Search from './components/search';
+import { Route } from "react-router-dom";
 
 class App extends Component {
   state = {
     books: []
-  }
+  };
 
-   /**
-   * Component lifecycle: After render API request for data
-   */
   componentDidMount() {
-    BooksAPI.getAll()
-      .then(books => this.setState({ books }))
-    
+    BooksAPI.getAll().then(books => {
+      this.setState({ books });
+    });
   }
 
   render() {
-    const books = this.state.books;
-    console.log(books);
-
-    return (<React.Fragment>
- <Bookshelf books={this.state.books} moveShelf={this.moveShelf} />
- 
- </React.Fragment>
-    )
+    return (
+      <React.Fragment>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Bookshelf books={this.state.books} moveShelf={this.moveShelf} />
+          )}
+        />
+        <Route
+          path="/search"
+          render={({ history }) => (
+            <Search books={this.state.books} moveShelf={this.moveShelf} />
+          )}
+        />
+      </React.Fragment>
+    );
   }
+
+  moveShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      BooksAPI.getAll().then(books => {
+        this.setState({ books });
+      });
+    });
+  };
 }
 
-
-
-export default App
+export default App;
