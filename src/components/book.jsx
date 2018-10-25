@@ -2,9 +2,10 @@ import React, { Component } from "react";
 
 class Book extends Component {
   state = {};
-
+// this shows the books and drop down menu 
   render() {
-    const { authors, title, img, book, newShelf, shelf } = this.props;
+    const { img, book, newShelf, shelf, authors, title } = this.props;
+    
     return (
       <div className="book">
         <div className="book-top">
@@ -15,15 +16,16 @@ class Book extends Component {
               height: 193,
               backgroundImage: `url(${img})`
             }}
-          />
+            //  start of drop down menu
+          />   
           <div className="book-shelf-changer">
             <select
               className="badge badge-pill"
               onChange={event => newShelf(book, event.target.value)}
               value={shelf || "none"}
-            >
+              >
               <option value="move" disabled>
-                Move to...
+                Move to
               </option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

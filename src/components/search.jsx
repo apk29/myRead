@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 class Search extends Component {
     state = {
       query: "",
-      booksShowing: []
+      booksShown: []
     };
   
     render() {
-      const { query, booksShowing } = this.state;
+      const { query, booksShown } = this.state;
       return (
-        <div className="search-books container">
+        <div className="search-books">
           <div className="search-books-bar">
             <Link to="/" className="close-search">
               Close
@@ -21,14 +21,14 @@ class Search extends Component {
               <input
                 type="text"
                 value={query}
-                placeholder="Search by title or author"
+                placeholder="Search"
                 onChange={event => this.performQuery(event.target.value)}
               />
             </div>
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {booksShowing.map(
+              {booksShown.map(
                 (book, i) =>
                   book.imageLinks ? (
                     <li key={i}>
@@ -61,12 +61,12 @@ class Search extends Component {
     }
   
     performQuery = query => {
-      let booksShowing = [];
+      let booksShown = [];
       this.setState({ query });
       if (query) {
         BooksAPI.search(query).then(booksMatching => {
           if (booksMatching.length > 0) {
-            booksShowing = booksMatching.map(b => {
+            booksShown = booksMatching.map(b => {
               const index = this.props.books.findIndex(c => c.id === b.id);
               if (index >= 0) {
                 return this.props.books[index];
@@ -75,10 +75,10 @@ class Search extends Component {
               }
             });
           }
-          this.setState({ booksShowing });
+          this.setState({ booksShown });
         });
       } else {
-        this.setState({ booksShowing });
+        this.setState({ booksShown });
       }
     };
   }

@@ -10,31 +10,35 @@ class App extends Component {
     books: []
   };
 
+  // this grabs all the books from the server and puts in the array books
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
-      this.setState({ books });
-    });
+    BooksAPI.getAll()
+      .then(books => this.setState({ books }))
+    
   }
 
   render() {
+    const { books } = this.state; //this sets books = this.state.books
+    const { moveShelf } = this; //this sets moveShelf = this.move.shelf
+    
     return (
       <React.Fragment>
         <Route
           exact
           path="/"
           render={() => (
-            <Bookshelf books={this.state.books} moveShelf={this.moveShelf} />
+ <Bookshelf books={books} moveShelf={moveShelf} />
           )}
         />
         <Route
           path="/search"
           render={({ history }) => (
-            <Search books={this.state.books} moveShelf={this.moveShelf} />
+            <Search books={books} moveShelf={moveShelf} />
           )}
         />
-      </React.Fragment>
+ </React.Fragment>
     );
-  }
+}
 
   moveShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(response => {
