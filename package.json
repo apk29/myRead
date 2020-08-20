@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^5.0.0",
     "deep-extend": "^0.5.1",
     "moment": "^2.22.2",
     "package-name": "^0.1.0",
